@@ -83,7 +83,7 @@ namespace BookStoreApp.API.Data
               NormalizedUserName = "ADMIN@BOOKSTORE.COM",
               FirstName = "System",
               LastName = "Admin",
-              PasswordHash = hasher.HashPassword(null, "P@assword1")
+              PasswordHash = hasher.HashPassword(null, "P@ssword1")
           },
             new ApiUser
             {
@@ -94,7 +94,7 @@ namespace BookStoreApp.API.Data
                 NormalizedUserName = "USER@BOOKSTORE.COM",
                 FirstName = "System",
                 LastName = "User",
-                PasswordHash = hasher.HashPassword(null, "P@assword1")
+                PasswordHash = hasher.HashPassword(null, "P@ssword1")
             }
           );
 

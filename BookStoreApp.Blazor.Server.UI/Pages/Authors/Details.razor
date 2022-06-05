@@ -6,7 +6,7 @@
 
 
 <EditForm Model="Author">
-    <fieldset disabled="true">
+    <fieldset disabled="disabled">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <InputText class="form-control" @bind-Value="Author.FirstName" id="firstName" />
@@ -30,17 +30,21 @@
     }
     else
     {
-        foreach (var book in Author.Books)
-        {
-            <div class="card" style="width: 18rem;">
-                <img src="@book.Image" class="card-img-top" alt="@book.Title">
-                <div class="card-body">
-                    <h5 class="card-title">@book.Title - @book.Price.ToString("C")</h5>
-                    <p class="card-text"></p>
-                    <a href="#" class="btn btn-primary">View book</a>
+        <div class="row">
+            @foreach (var book in Author.Books)
+            {
+            <div class="col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                    <img src="@book.Image" class="card-img-top" alt="@book.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title - @book.Price.ToString("C")</h5>
+                        <p class="card-text"></p>
+                        <a href="#" class="btn btn-primary">View book</a>
+                    </div>
                 </div>
             </div>
-        }
+            }
+        </div>
     }
 
     <div class="row mt-4">

@@ -2,6 +2,7 @@
 using BookStoreApp.API.Data;
 using BookStoreApp.API.Models.Author;
 using BookStoreApp.API.Repositories;
+using BookStoreApp.API.Services;
 using BookStoreApp.API.Static;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,14 @@ namespace BookStoreApp.API.Controllers
         private readonly IAuthorsRepository authorsRepository;
         private readonly IMapper mapper;
         private readonly ILogger<AuthorsController> logger;
+        private readonly IEmailService _emailService;
 
-        public AuthorsController(IAuthorsRepository authorsRepository, IMapper mapper, ILogger<AuthorsController> logger)
+        public AuthorsController(IAuthorsRepository authorsRepository, IMapper mapper, ILogger<AuthorsController> logger, IEmailService emailService)
         {
             this.authorsRepository = authorsRepository;
             this.mapper = mapper;
             this.logger = logger;
+            _emailService = emailService;
         }
 
         // GET: api/Authors
@@ -103,7 +106,7 @@ namespace BookStoreApp.API.Controllers
 
             var author = mapper.Map<Author>(authorDto);
             await authorsRepository.AddAsync(author);
-
+            _emailService.SendEmail("danielthames360@gmail.com", "danielthames@outlook.com", "New Author Added", "Everything is working");
             return CreatedAtAction(nameof(GetAuthor), new { id = author.Id }, author);
         }
 
